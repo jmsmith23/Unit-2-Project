@@ -49,10 +49,10 @@ exports.loginUser = async (req, res) => {
 //Update User Info
 exports.updateUser = async (req, res) => {
   try {
-    const updates = Object.keys(req.body);
-    updates.forEach((update) => (req.user[update] = req.body[update]));
+    const keys = Object.keys(req.body);
+    keys.forEach((key) => (req.user[key] = req.body[key]));
     await req.user.save();
-    res.json(user);
+    res.json(req.user);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
