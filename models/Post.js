@@ -6,6 +6,7 @@ const postSchema = new Schema(
     user: { type: Schema.Types.ObjectId, required: true, ref: 'User' },
     category: { type: String, required: true },
     post: { type: String, required: true },
+    likeUserIds: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   },
   {
     timestamps: true,
