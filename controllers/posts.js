@@ -62,12 +62,13 @@ exports.showAllPosts = async (req, res) => {
 
 exports.likePost = async (req, res) => {
   try {
-    const foundPost = await Post.findOneAndUpdate(
+    const updatedPost = await Post.findOneAndUpdate(
       { _id: req.params.post_id },
-      { $addToSet: { likeUserIds: req.params.user_id } },
+      // { $addToSet: { likeUserIds: req.params.user_id } },
+      { $addToSet: { likeUserIds: req.user._id } },
       { new: true }
     );
-    res.send(foundPost);
+    res.send(updatedPost);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
