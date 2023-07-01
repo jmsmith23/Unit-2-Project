@@ -28,4 +28,6 @@ This API allows a user to create, update, delete, like and comment on blog posts
 
 8. Next, in your terminal, you will have to touch a file called `.env`. This file contains sensitive information which is why it is listed in the .gitignore file. The .gitignore file will keep this information from being posted to github or making it public in any way.
 
-9. In the `.env` file, create an environment variable called `MONGO_URI=`. After the "=" paste in your personal URI string to connect to the database (no spaces).
+9. In the `.env` file, create an environment variable called `MONGO_URI=`. After the "=" paste in your personal URI string to connect to the database.You will also want to make another variable called `SECRET=` which will contain your password for your authorization token. Use this site (https://emn178.github.io/online-tools/sha256.html) to create a hash of your password to keep it secret and paste it into your .env (ex `SECRET= 123456....`)
+
+10. Lastly you will want to start the server by typing `npm run dev` in the terminal.
