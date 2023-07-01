@@ -30,4 +30,41 @@ describe('Test all of the users endpoints', () => {
     expect(response.body.user.name).toEqual('J Smith');
     expect(response.body.user.email).toEqual('jms@hemail.com');
   });
+
+  test('It should update user info', async () => {
+    const user = new User({
+      name: 'J Smith',
+      email: 'update@test.com',
+      password: '123987',
+    });
+    await user.save();
+    const token = await user.generateAuthToken();
+
+    const response = await request(app)
+      .put(`/users/${user.id}`)
+      .set('Authorization', `Bearer ${token}`)
+      .send({
+        name: 'J Smith',
+        email: 'newupdate@test.com',
+        password: '123456',
+      });
+
+    expect(response.statusCode).toBe(200);
+  });
+
+  test('It should delete a user', async () => {
+    const user = new User({
+      name: 'J Smith',
+      email: 'deleteme@test.com',
+      password: '000123',
+    });
+    await user.save();
+    const token = await user.generateAuthToken();
+
+    const response = await request(app)
+      .delete(`/users/${user.id}`)
+      .set('Authorization', `Bearer ${token}`);
+
+    expect(response.statusCode).toBe(204);
+  });
 });

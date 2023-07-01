@@ -116,30 +116,29 @@ describe('Test all post endpoints', () => {
     expect(response.statusCode).toBe(204);
   });
 
-  //   test('it should show all posts', async () => {
-  //     const user = new User({
-  //       name: 'J Smith',
-  //       email: 'whonow@email.com',
-  //       password: '123987',
-  //     });
-  //     await user.save();
-  //     const token = await user.generateAuthToken();
-  //     const posts = new Post({
-  //       title: 'Minor Scale',
-  //       category: 'Minor Scale Warmup',
-  //       post: 'Start by playing minor scale in 3 different positions...',
-  //     });
-  //     await posts.save();
-  //     const response = request(app)
-  //       .get('/posts')
-  //       .set('Authorization', `Bearer ${token}`);
+  test('it should show all posts', async () => {
+    const user = new User({
+      name: 'J Smith',
+      email: 'whonow@email.com',
+      password: '123987',
+    });
+    await user.save();
+    const token = await user.generateAuthToken();
+    const posts = new Post({
+      title: 'Melodic Minor Scale',
+      category: 'Melodic Minor Scale Warmup',
+      post: 'Start by playing melodic minor scale in 3 different positions...',
+    });
+    await posts.save();
+    const response = await request(app)
+      .get('/posts')
+      .set('Authorization', `Bearer ${token}`);
 
-  //     // expect(Array.isArray(response.body)).toEqual(true);
-  //     await response.body.forEach((object) => {
-  //       expect(object).toHaveProperty('title');
-  //       expect(object).toHaveProperty('category');
-  //       expect(object).toHaveProperty('post');
-  //       expect(object).toHaveProperty('likeUserIds');
-  //     });
-  //   });
+    response.body.forEach((object) => {
+      expect(object).toHaveProperty('title');
+      expect(object).toHaveProperty('category');
+      expect(object).toHaveProperty('post');
+      expect(object).toHaveProperty('likeUserIds');
+    });
+  });
 });

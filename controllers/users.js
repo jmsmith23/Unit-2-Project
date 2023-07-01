@@ -46,6 +46,18 @@ exports.loginUser = async (req, res) => {
   }
 };
 
+//Logout A User
+exports.logoutUser = async (req, res) => {
+  try {
+    const user = req.user;
+    req.user.isLoggedIn = false;
+    req.user.save();
+    res.json({ user, message: 'You are successfully logged out' });
+  } catch (error) {
+    response.status(421).json({ message: error.message });
+  }
+};
+
 //Update User Info
 exports.updateUser = async (req, res) => {
   try {
