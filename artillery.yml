@@ -6,10 +6,10 @@ config:
 scenarios:
   - flow:
       - post:
-          url: '/posts'
+          url: '/users'
           json:
-            title: 'Test'
-            category: 'artillery test'
-            post: 'take that'
+            name: 'Test'
+            email: 'test@artillery.com'
+            password: '123456'
       - get:
-          url: '/posts'
+          url: '/users'
