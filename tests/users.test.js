@@ -29,6 +29,7 @@ describe('Test all of the users endpoints', () => {
     expect(response.statusCode).toBe(200);
     expect(response.body.user.name).toEqual('J Smith');
     expect(response.body.user.email).toEqual('jms@hemail.com');
+    expect(response.body).to.have.ownProperty('token');
   });
 
   test('It should update user info', async () => {

@@ -10,3 +10,7 @@ This API allows a user to create, update, delete, like and comment on blog posts
 - nodemon
 
 ## Getting Started
+
+1. Go to your computers terminal and create a new directory to store this project in (ex. `mkdir Blog_API`) and cd into that directory.
+
+2. Towards the top of this page click on the green button that says "<> Code".
