@@ -64,7 +64,6 @@ exports.likePost = async (req, res) => {
   try {
     const updatedPost = await Post.findOneAndUpdate(
       { _id: req.params.post_id },
-      // { $addToSet: { likeUserIds: req.params.user_id } },
       { $addToSet: { likeUserIds: req.user._id } },
       { new: true }
     );
