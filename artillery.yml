@@ -9,7 +9,5 @@ scenarios:
           url: '/users'
           json:
             name: 'Test'
-            email: 'test@artillery.com'
-            password: '123456'
-      - get:
-          url: '/users'
+            email: 'testing@artillery.com'
+            password: 'test this post'

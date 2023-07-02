@@ -33,3 +33,7 @@ This API allows a user to create, update, delete, like and comment on blog posts
 10. Lastly you will want to start the server by typing `npm run dev` in the terminal.
 
 ## Using the Blog API
+
+### Running Automated Tests
+
+To run **unit tests**, simply type `npm run test` in the terminal. Once tests finish running you will see the passing tests in green, indicating they passed successfully. To run the **load test**, type `npm run load` in the terminal. Artillery will run the load test for 60 seconds, showing the status update every 10 seconds. The load test is shown successful when all tests pass with a status code of 200.
