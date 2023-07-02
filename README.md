@@ -36,4 +36,36 @@ This API allows a user to create, update, delete, like and comment on blog posts
 
 ### Running Automated Tests
 
-To run **unit tests**, simply type `npm run test` in the terminal. Once tests finish running you will see the passing tests in green, indicating they passed successfully. To run the **load test**, type `npm run load` in the terminal. Artillery will run the load test for 60 seconds, showing the status update every 10 seconds. The load test is shown successful when all tests pass with a status code of 200.
+To run **unit tests**, simply type `npm run test` in the terminal. Once tests finish running you will see the passing tests in green, indicating they passed successfully. To run the **load test**, type `npm run load` in the terminal. Artillery will run the load test for 60 seconds, showing the status update every 10 seconds. The load test is successful when all tests pass with a status code of 200. The code for these tests can be reviewed in the **tests** folder for the unit tests, and in the **artillery.yml** file for the load test.
+
+### User Routes
+
+| **HTTP Method** |   **End Point**   |         **Action** |
+| :-------------- | :---------------: | -----------------: |
+| POST            |      /users       | creates a new user |
+| POST            |   /users/login    |       logs in user |
+| POST            | /users/logout/:id |      logs out user |
+| PUT             |    /users/:id     |   update user info |
+| DELETE          |    /users/:id     |       deletes user |
+
+### User Functions
+
+1. To use the Blog API, launch Postman.
+
+2. In the URL connect to port 3000 by typing `http://localhost:3000`,
+
+3. To create a user, first add `/users` to the end of the URL (ex. `http://localhost:3000/users`).
+
+4. In the box/drop-down menu to the left of the URL, select the `POST` option.
+
+5. Under the URL select the "Body" option. On the next line down, be sure to select the "raw" box and in the drop down menu all the way to the right, set to `JSON`.
+
+6. In the box directly below these options, create your user. To do so, first type a pair of curly brackets. Within the brackets, you will need to complete 3 fields: "name", "email", and "password". These must be written in JSON format, keys and values must be in quotes, keys must end with a colon and values must have a comma after them.
+
+Ex:
+
+            {
+            "name": "User 1",
+            "email": "user1@email.com",
+            "password": "password"
+            }
