@@ -69,3 +69,8 @@ Ex:
             "email": "user1@email.com",
             "password": "password"
             }
+
+7. Once completed, press the `Send` button. Your created user info will be shown in the "Response" box. You will notice the password has been hashed for security purposes. You will also notice a few other attributes including a "posts" key with a value of an empty array, a unique user id which will be needed to perform other actions, a time stamp indicating the time of the users creation and another time stamp showing when the user was last updated, and finally a token at the bottom which will be used for authorization purposes.
+
+_Example of a successfully created user_
+![Imgur](https://i.imgur.com/sOWiTfg.png)
