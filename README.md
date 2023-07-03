@@ -9,6 +9,7 @@ This API allows a user to create, update, delete, like and comment on blog posts
 - node.js
 - nodemon
 - VS Code
+- Postman
 
 ## Getting Started
 

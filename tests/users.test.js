@@ -58,7 +58,7 @@ describe('Test all of the users endpoints', () => {
     const token = await user.generateAuthToken();
 
     const response = await request(app)
-      .post(`/users/logout/${user.id}`)
+      .post(`/users/logout`)
       .set('Authorization', `Bearer ${token}`)
       .send({ name: 'J Smith', email: 'jms@logout.com', password: '123456' });
 

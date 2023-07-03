@@ -141,4 +141,28 @@ describe('Test all post endpoints', () => {
       expect(object).toHaveProperty('likeUserIds');
     });
   });
+
+  test('It should like a post', async () => {
+    const user = new User({
+      name: 'J Smith',
+      email: 'like@email.com',
+      password: '123987',
+    });
+    await user.save();
+    const token = await user.generateAuthToken();
+    const post = new Post({
+      title: 'Dorian Minor Scale',
+      category: 'Dorian Minor Scale Warmup',
+      post: 'Start by playing dorian minor scale in 3 different positions...',
+    });
+    await post.save();
+    const response = await request(app)
+      .put(`/posts/${post.id}/like`)
+      .set('Authorization', `Bearer ${token}`);
+
+    const liked = await Post.findById(post.id);
+
+    expect(response.statusCode).toBe(200);
+    expect(liked.likeUserIds.includes(user.id)).toEqual(true);
+  });
 });
