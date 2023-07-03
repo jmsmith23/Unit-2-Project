@@ -155,3 +155,85 @@ _Example of a successfully deleted user_
 | DELETE          |      /posts/:id      |      deletes a post |
 | GET             |        /posts        |     shows all posts |
 | PUT             | /posts/:post_id/like |         like a post |
+
+### Create A Post
+
+1. To create a post, make sure you are logged in and authorized.
+
+2. In the URL, add the end point `posts` (ex. `http://localhost:3000/posts`).
+
+3. In the box/drop-down menu to the left of the URL, select the `POST` option.
+
+4. Under the URL select the "Body" option. On the next line down, be sure to select the "raw" box and in the drop down menu all the way to the right, set to `JSON`.
+
+5. Create your post by first typing a pair of curly brackets and within them you will need to complete 3 fields, "title", "category", and "post". These must be written in JSON format, keys and values must be in quotes, keys must end with a colon and values must have a comma after them.
+
+Ex.
+
+            {
+                "title": "Post Title",
+                "category": "Post Category",
+                "post": "This is my first post"
+            }
+
+6. Once completed, press the `Send` button. Your created post will be shown in the "Response" box. In addition to the fields you completed, you will also see the id number of the user who created the post, a `likeUserIds` key with an empty array which will store "likes" for your specific post, a unique id attributed to your post, and a timestamp that shows when the post was created and updated.
+
+_Example of successfully created post_
+![Imgur](https://i.imgur.com/eQJdqiC.png)
+
+### Show An Individual Post
+
+1. To show an individual post, simply paste the posts id into the URL after `posts` (ex. `http://localhost:3000/posts/:id`).
+
+2. In the box/drop-down menu to the left of the URL, select the `GET` option.
+
+3. Press the `Send` button. The specific post you requested by its id number will be shown in the "Response" box.
+
+_Example of successfully recalled post_
+![Imgur](https://i.imgur.com/wwSxtp5.png)
+
+### Update A Post
+
+1. To update an existing post, first paste the posts id into the URL after `posts` (ex. `http://localhost:3000/posts/:id`).
+
+2. In the box/drop-down menu to the left of the URL, select the `PUT` option.
+
+3. In the body, type your updated message in JSON format for the three fields required for the post ("title", "category", and "post").
+
+4. Press the `Send` button. The updated post will be shown in the "Response" box.
+
+_Example of successfully updated post_
+![Imgur](https://i.imgur.com/L2AISFB.png)
+
+### Delete A Post
+
+1. To delete a post, paste the posts id into the URL after `posts` (ex. `http://localhost:3000/posts/:id`).
+
+2. In the box/drop-down menu to the left of the URL, select the `DELETE` option.
+
+3. Press the `Send` button. The specific post you requested by its id number will be deleted. The "Response" box will be empty and will show a status code of 204.
+
+_Example of successfully deleted post_
+![Imgur](https://i.imgur.com/oefgOWy.png)
+
+### Show A List Of All Posts
+
+1. To show a list of all created posts, use the end point `posts` in the URL (ex. `http://localhost:3000/posts`).
+
+2. In the box/drop-down menu to the left of the URL, select the `GET` option.
+
+3. Press the `Send` button. In the "Response" box you will see a list of all created posts.
+
+_Example of successfully displaying all posts_
+![Imgur](https://i.imgur.com/Zw6zMZE.png)
+
+### Like A Post
+
+1. To like a post, you will need to paste the posts id number in the URL followed by `/like` (ex. `http://localhost:3000/posts/:id/like`).
+
+2. In the box/drop-down menu to the left of the URL, select the `PUT` option.
+
+3. Press the `Send` button. In the "Response" box you will see the post you liked with your user id number listed in the array of `likeUserIds`.
+
+_Example of successfully liked post_
+![Imgur](https://i.imgur.com/beYl2xF.png)
