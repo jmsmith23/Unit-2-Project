@@ -4,6 +4,7 @@ const commentSchema = new Schema(
   {
     commenter: { type: Schema.Types.ObjectId, required: true, ref: 'User' },
     content: { type: String, required: true },
+    post: {},
   },
   {
     timestamps: true,

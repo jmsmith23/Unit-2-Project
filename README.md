@@ -41,13 +41,13 @@ To run **unit tests**, simply type `npm run test` in the terminal. Once tests fi
 
 ### User Routes
 
-| **HTTP Method** |   **End Point**   |         **Action** |
-| :-------------- | :---------------: | -----------------: |
-| POST            |      /users       | creates a new user |
-| POST            |   /users/login    |       logs in user |
-| POST            | /users/logout/:id |      logs out user |
-| PUT             |    /users/:id     |   update user info |
-| DELETE          |    /users/:id     |       deletes user |
+| **HTTP Method** | **End Point** |         **Action** |
+| :-------------- | :-----------: | -----------------: |
+| POST            |    /users     | creates a new user |
+| POST            | /users/login  |       logs in user |
+| POST            | /users/logout |      logs out user |
+| PUT             |  /users/:id   |   update user info |
+| DELETE          |  /users/:id   |       deletes user |
 
 ### Create A New User
 
@@ -123,14 +123,14 @@ _Example of correctly updating a user_
 
 ### Logout User
 
-1. In the URL, be sure to have `/logout/:id`(users id) following `users` (ex `http://localhost:3000/users/logout/_id`),
+1. In the URL, be sure to have `/logout` following `users` (ex `http://localhost:3000/users/logout`),
 
 2. From the drop-down menu select the `POST` method.
 
 3. Press the `Send` button. In the "Response" body you will see the message "You are successfully logged out", confirming the user has indeed logged out.
 
 _Example of successfully logged out a user_
-![Imgur](https://i.imgur.com/PEPGlna.png)
+![Imgur](https://i.imgur.com/RN5jp6P.png)
 
 ### Delete User
 
