@@ -1,10 +1,5 @@
 # Unit-2-Project
 
-## Table Of Contents
-
-- [Unit-2-Project](#unit-2-project) - [Blog API](#blog-api) - [Prerequisites](#prerequisites) - [Getting Started](#getting-started) - [Using the Blog API](#using-the-blog-api) - [Running Automated Tests](#running-
-  mated-tests) - [User Routes](#user-routes) - [Create A New User](#create-a-new-user) - [Login User](#login-user) - [Authorize User](#authorize-user) - [Update User Info](#update-user-info) - [Logout User](#logout-user) - [Delete User](#delete-user) - [Post Routes](#post-routes) - [Create A Post](#create-a-post) - [Show An Individual Post](#show-an-individual-post) - [Update A Post](#update-a-post) - [Delete A Post](#delete-a-post) - [Show A List Of All Posts](#show-a-list-of-all-posts) - [Like A Post](#like-a-post) - [Comment On A Post](#comment-on-a-post)
-
 ## Blog API
 
 This API allows a user to create, update, delete, like and comment on blog posts. The user, once signed up with a username/email/password, will be able to login/logout, create and interact with other blog posts, update their login credentials and also delete their profile.
