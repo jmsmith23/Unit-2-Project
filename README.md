@@ -27,7 +27,7 @@ This API allows a user to create, update, delete, like and comment on blog posts
 
 7. When VS Code opens you will want to open the terminal at the bottom of the screen and type `npm i` to install all of the packages needed to run the app. The packages installed include mongoose, morgan, express, jsonwebtoken, bcrypt, dotenv as well as jest, supertest, mongodb-memory-server, and artillery (at version 1.7.9 intentionally) as dev dependencies.
 
-8. Next, in your terminal, you will have to touch a file called `.env`. This file contains sensitive information which is why it is listed in the .gitignore file. The .gitignore file will keep this information from being posted to github or making it public in any way.
+8. Next, in your terminal, you will have to touch a file called `.env`. This file contains sensitive information which is why it is listed in the .gitignore file. The .gitignore file will keep this information from being made public in any way.
 
 9. In the `.env` file, create an environment variable called `MONGO_URI=`. After the "=" paste in your personal URI string to connect to the database (ex. `MONGO_URI= mongodb://myDBReader:D1fficultP%40ssw0rd@mongodb0.example.com:27017/?authSource=admin`).You will also want to make another variable called `SECRET=` which will contain your password for your authorization token. Use this site (https://emn178.github.io/online-tools/sha256.html) to create a hash of your password to keep it secret and paste it into your .env (ex `SECRET= 123456....`)
 
@@ -61,7 +61,7 @@ To run **unit tests**, simply type `npm run test` in the terminal. Once tests fi
 
 5. Under the URL select the "Body" option. On the next line down, be sure to select the "raw" box and in the drop down menu all the way to the right, set to `JSON`.
 
-6. In the box directly below these options, create your user. To do so, first type a pair of curly brackets. Within the brackets, you will need to complete 3 fields: "name", "email", and "password". These must be written in JSON format, keys and values must be in quotes, keys must end with a colon and values must have a comma after them.
+6. In the "Request" box directly below these options, create your user. To do so, first type a pair of curly brackets. Within the brackets, you will need to complete 3 fields: "name", "email", and "password". These must be written in JSON format, keys and values must be in quotes, keys must end with a colon and values must have a comma after them.
 
 Ex:
 
@@ -147,14 +147,15 @@ _Example of a successfully deleted user_
 
 ### Post Routes
 
-| **HTTP Method** |    **End Point**     |          **Action** |
-| :-------------- | :------------------: | ------------------: |
-| POST            |        /posts        |      creates a post |
-| GET             |      /posts/:id      | shows a single post |
-| PUT             |      /posts/:id      |      updates a post |
-| DELETE          |      /posts/:id      |      deletes a post |
-| GET             |        /posts        |     shows all posts |
-| PUT             | /posts/:post_id/like |         like a post |
+| **HTTP Method** |      **End Point**      |          **Action** |
+| :-------------- | :---------------------: | ------------------: |
+| POST            |         /posts          |      creates a post |
+| GET             |       /posts/:id        | shows a single post |
+| PUT             |       /posts/:id        |      updates a post |
+| DELETE          |       /posts/:id        |      deletes a post |
+| GET             |         /posts          |     shows all posts |
+| PUT             |  /posts/:post_id/like   |         like a post |
+| POST            | /posts/:post_id/comment |   comment on a post |
 
 ### Create A Post
 
@@ -176,10 +177,10 @@ Ex.
                 "post": "This is my first post"
             }
 
-6. Once completed, press the `Send` button. Your created post will be shown in the "Response" box. In addition to the fields you completed, you will also see the id number of the user who created the post, a `likeUserIds` key with an empty array which will store "likes" for your specific post, a unique id attributed to your post, and a timestamp that shows when the post was created and updated.
+6. Once completed, press the `Send` button. Your created post will be shown in the "Response" box. In addition to the fields you completed, you will also see the id number of the user who created the post, a `likeUserIds` key with an empty array which will store "likes" for your specific post, a `comments` key with an empty array which will store comments for your specific post, a unique id attributed to your post, and a timestamp that shows when the post was created and updated.
 
 _Example of successfully created post_
-![Imgur](https://i.imgur.com/eQJdqiC.png)
+![Imgur](https://i.imgur.com/BKE3Ghr.png)
 
 ### Show An Individual Post
 
@@ -237,3 +238,16 @@ _Example of successfully displaying all posts_
 
 _Example of successfully liked post_
 ![Imgur](https://i.imgur.com/beYl2xF.png)
+
+### Comment On A Post
+
+1. To leave a comment on a post, you will need to paste the posts id number in the URL followed by `/comment` (ex. `http://localhost:3000/posts/:id/comment`).
+
+2. In the box/drop-down menu to the left of the URL, select the `POST` option.
+
+3. In the "Request" box, write your comment by first typing `"content": ` followed by the comment (in parenthesis) between curly brackets.
+
+4. Press the `Send` button. In the "Response" box you will see the comment posted. It will include the user who wrote the comments id number, the comment itself, the comments id number and the time it was created.
+
+_Example of a comment on a post_
+![Imgur](https://i.imgur.com/QmMNlZa.png)

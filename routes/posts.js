@@ -9,7 +9,6 @@ router.put('/:id', userController.auth, postCtrl.updatePost);
 router.delete('/:id', userController.auth, postCtrl.deletePost);
 router.get('/', userController.auth, postCtrl.showAllPosts);
 router.put('/:post_id/like', userController.auth, postCtrl.likePost);
-// router.post('/:post_id/comment', userController.auth, postCtrl.commentOnPost);
-// router.put('/:post_id/comment/:comment_id', userController.auth, postCtrl.updateComment);
+router.post('/:post_id/comment', userController.auth, postCtrl.commentOnPost);
 
 module.exports = router;

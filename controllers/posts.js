@@ -1,5 +1,6 @@
 const Post = require('../models/Post');
 const User = require('../models/User');
+const Comment = require('../models/Comment');
 
 //Create New Post
 exports.createPost = async function (req, res) {
@@ -19,7 +20,10 @@ exports.createPost = async function (req, res) {
 //Show A Specific Post
 exports.showPost = async function (req, res) {
   try {
-    const post = await Post.findOne({ _id: req.params.id });
+    const post = await Post.findOne({ _id: req.params.id }).populate(
+      'comments'
+    );
+
     res.json(post);
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -69,6 +73,23 @@ exports.likePost = async (req, res) => {
     );
     res.send(updatedPost);
   } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+// Create A Comment
+
+exports.commentOnPost = async function (req, res) {
+  try {
+    req.body.commenter = req.user._id;
+    const comment = await Comment.create(req.body);
+    await comment.save();
+    await Post.findByIdAndUpdate(req.params.post_id, {
+      $addToSet: { comments: comment.id },
+    });
+    res.json(comment);
+  } catch (error) {
+    console.error(error);
     res.status(400).json({ message: error.message });
   }
 };
