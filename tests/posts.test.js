@@ -175,9 +175,9 @@ describe('Test all post endpoints', () => {
     await user.save();
     const token = await user.generateAuthToken();
     const post = new Post({
-      title: 'Dorian Minor Scale',
-      category: 'Dorian Minor Scale Warmup',
-      post: 'Start by playing dorian minor scale in 3 different positions...',
+      title: 'Phrygian Minor Scale',
+      category: 'Phrygian Minor Scale Warmup',
+      post: 'Start by playing phrygian minor scale in 3 different positions...',
     });
     await post.save();
 

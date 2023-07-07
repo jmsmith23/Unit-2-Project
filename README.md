@@ -251,3 +251,17 @@ _Example of successfully liked post_
 
 _Example of a comment on a post_
 ![Imgur](https://i.imgur.com/QmMNlZa.png)
+
+## ERD/Pseudocode
+
+![Imgur](https://i.imgur.com/TN3SB4i.png)
+
+## UI Wireframe / Concept
+
+![Imgur](https://i.imgur.com/rBjeVhe.png)
+
+![Imgur](https://i.imgur.com/Fz0YoET.png)
+
+![Imgur](https://i.imgur.com/UvCEmSR.png)
+
+![Imgur](https://i.imgur.com/H6y4EfS.png)
