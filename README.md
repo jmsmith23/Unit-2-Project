@@ -6,10 +6,10 @@ This API allows a user to create, update, delete, like and comment on blog posts
 
 ## Prerequisites
 
-- node.js
-- nodemon
-- VS Code
-- Postman
+- node.js (https://nodejs.dev/en/learn/how-to-install-nodejs/)
+- nodemon (https://www.npmjs.com/package/nodemon)
+- VS Code (https://code.visualstudio.com/docs/setup/setup-overview)
+- Postman (https://learning.postman.com/docs/getting-started/installation-and-updates/)
 
 ## Getting Started
 

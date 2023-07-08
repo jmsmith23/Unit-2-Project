@@ -52,7 +52,7 @@ exports.deletePost = async function (req, res) {
   }
 };
 
-//Index All Posts
+//Show All Posts
 exports.showAllPosts = async (req, res) => {
   try {
     const showAllPosts = await Post.find({});
