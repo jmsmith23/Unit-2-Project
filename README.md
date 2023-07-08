@@ -31,7 +31,7 @@ This API allows a user to create, update, delete, like and comment on blog posts
 
 9. In the `.env` file, create an environment variable called `MONGO_URI=`. After the "=" paste in your personal URI string to connect to the database (ex. `MONGO_URI= mongodb://myDBReader:D1fficultP%40ssw0rd@mongodb0.example.com:27017/?authSource=admin`).You will also want to make another variable called `SECRET=` which will contain your password for your authorization token. Use this site (https://emn178.github.io/online-tools/sha256.html) to create a hash of your password to keep it secret and paste it into your .env (ex `SECRET= 123456....`)
 
-10. Lastly you will want to start the server by typing `npm run dev` in the terminal.
+10. Lastly you will want to start the server by opening a second terminal and typing `npm run dev`.
 
 ## Using the Blog API
 
