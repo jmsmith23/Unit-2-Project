@@ -9,5 +9,5 @@ scenarios:
           url: '/users'
           json:
             name: 'Test'
-            email: 'testing@artillery.com'
-            password: 'test this post'
+            email: '{{ $randomString() }}'
+            password: '{{ $randomString() }}'
