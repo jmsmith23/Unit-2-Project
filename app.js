@@ -9,4 +9,11 @@ app.use(morgan('combined'));
 app.use('/users', userRoutes);
 app.use('/posts', postRoutes);
 
+// app.use((error, req, res) => {
+//   console.log('error handler!');
+//   console.log(error);
+
+//   res.status(200).send();
+// });
+
 module.exports = app;

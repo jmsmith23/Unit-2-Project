@@ -31,6 +31,23 @@ exports.createUser = async (req, res) => {
   }
 };
 
+//Create A New User
+exports.signupUser = async (req, res) => {
+  try {
+    // Is the email already in use?
+    // Is the username taken?
+    // Is the password strong enough?
+    // Is the username long enough?
+
+    const user = new User(req.body);
+    await user.save();
+    const token = await user.generateAuthToken();
+    res.json({ user, token });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
 //Login A User
 exports.loginUser = async (req, res) => {
   try {
