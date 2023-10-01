@@ -21,7 +21,7 @@ afterAll(async () => {
 describe('Test all of the users endpoints', () => {
   test('it should create a new user', async () => {
     const response = await request(app).post('/users').send({
-      name: 'J Smith',
+      userName: 'J Smith',
       email: 'jms@hemail.com',
       password: '123456',
     });
@@ -34,7 +34,7 @@ describe('Test all of the users endpoints', () => {
 
   test('It should login the user', async () => {
     const user = new User({
-      name: 'J Smith',
+      userName: 'J Smith',
       email: 'jms@login.com',
       password: '123456',
     });
@@ -50,7 +50,7 @@ describe('Test all of the users endpoints', () => {
 
   test('It should logout the user', async () => {
     const user = new User({
-      name: 'J Smith',
+      userName: 'J Smith',
       email: 'jms@logout.com',
       password: '123456',
     });
@@ -68,7 +68,7 @@ describe('Test all of the users endpoints', () => {
 
   test('It should update user info', async () => {
     const user = new User({
-      name: 'J Smith',
+      userName: 'J Smith',
       email: 'update@test.com',
       password: '123987',
     });
@@ -79,7 +79,7 @@ describe('Test all of the users endpoints', () => {
       .put(`/users/${user.id}`)
       .set('Authorization', `Bearer ${token}`)
       .send({
-        name: 'J Smith',
+        userName: 'J Smith',
         email: 'newupdate@test.com',
         password: '123456',
       });
@@ -89,7 +89,7 @@ describe('Test all of the users endpoints', () => {
 
   test('It should delete a user', async () => {
     const user = new User({
-      name: 'J Smith',
+      userName: 'J Smith',
       email: 'deleteme@test.com',
       password: '000123',
     });

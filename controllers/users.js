@@ -2,64 +2,67 @@ require('dotenv').config();
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const HttpError = require('../errors/http-error');
 
 //User Authentication
 exports.auth = async (req, res, next) => {
-  try {
-    const token = req.header('Authorization').replace('Bearer ', '');
-    const data = jwt.verify(token, process.env.SECRET);
-    const user = await User.findOne({ _id: data._id });
-    if (!user) {
-      throw new Error('Invalid User Info');
-    }
-    req.user = user;
-    next();
-  } catch (error) {
-    res.status(401).json({ message: error.message });
+  const token = req.header('Authorization').replace('Bearer ', '');
+  const data = jwt.verify(token, process.env.SECRET);
+  const user = await User.findOne({ _id: data._id });
+  if (!user) {
+    throw new HttpError(400, 'Invalid User Info');
   }
+  req.user = user;
+  next();
 };
 
 //Create A New User
-exports.createUser = async (req, res) => {
-  try {
-    const user = new User(req.body);
-    await user.save();
-    const token = await user.generateAuthToken();
-    res.json({ user, token });
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-};
+// exports.createUser = async (req, res) => {
+//   try {
+//     const user = new User(req.body);
+//     await user.save();
+//     const token = await user.generateAuthToken();
+//     res.json({ user, token });
+//   } catch (error) {
+//     res.status(400).json({ message: error.message });
+//   }
+// };
 
-//Create A New User
+// Create A New User
 exports.signupUser = async (req, res) => {
-  try {
-    // Is the email already in use?
-    // Is the username taken?
-    // Is the password strong enough?
-    // Is the username long enough?
-
-    const user = new User(req.body);
-    await user.save();
-    const token = await user.generateAuthToken();
-    res.json({ user, token });
-  } catch (error) {
-    res.status(400).json({ message: error.message });
+  // Is the email already in use?
+  if (await User.findOne({ email: req.body.email })) {
+    throw new HttpError(400, 'Email is already in use.');
   }
+  // Is the username taken?
+  if (await User.findOne({ userName: req.body.userName })) {
+    throw new HttpError(400, 'Username is already in use.');
+  }
+
+  const newUser = new User(req.body);
+
+  // Is the password strong enough?
+  if (newUser.password.length < 8) {
+    throw new HttpError(400, 'Password must be at least 8 characters.');
+  }
+  // Is the username long enough?
+  if (newUser.userName.length < 6) {
+    throw new HttpError(400, 'Username must be at least 6 characters.');
+  }
+
+  await newUser.save();
+  const token = await newUser.generateAuthToken();
+  res.json({ user: newUser, token });
 };
 
 //Login A User
 exports.loginUser = async (req, res) => {
-  try {
-    const user = await User.findOne({ email: req.body.email });
-    if (!user || !(await bcrypt.compare(req.body.password, user.password))) {
-      throw new Error('Invalid Login Info');
-    } else {
-      const token = await user.generateAuthToken();
-      res.json({ user, token });
-    }
-  } catch (error) {
-    res.status(400).json({ message: error.message });
+  const user = await User.findOne({ email: req.body.email });
+  if (!user || !(await bcrypt.compare(req.body.password, user.password))) {
+    throw new HttpError(400, 'Invalid Login Info');
+  } else {
+    const token = await user.generateAuthToken();
+    res.json({ user, token });
   }
 };
 
