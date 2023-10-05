@@ -68,26 +68,26 @@ exports.loginUser = async (req, res) => {
 
 //Logout A User
 exports.logoutUser = async (req, res) => {
-  try {
-    const user = req.user;
-    req.user.isLoggedIn = false;
-    req.user.save();
-    res.json({ user, message: 'You are successfully logged out' });
-  } catch (error) {
-    response.status(421).json({ message: error.message });
-  }
+  // try {
+  const user = req.user;
+  req.user.isLoggedIn = false;
+  req.user.save();
+  res.json({ user, message: 'You are successfully logged out' });
+  // } catch (error) {
+  //   response.status(421).json({ message: error.message });
+  // }
 };
 
 //Update User Info
 exports.updateUser = async (req, res) => {
-  try {
-    const keys = Object.keys(req.body);
-    keys.forEach((key) => (req.user[key] = req.body[key]));
-    await req.user.save();
-    res.json(req.user);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
+  // try {
+  const keys = Object.keys(req.body);
+  keys.forEach((key) => (req.user[key] = req.body[key]));
+  await req.user.save();
+  res.json(req.user);
+  // } catch (error) {
+  //   res.status(400).json({ message: error.message });
+  // }
 };
 
 //Delete User
