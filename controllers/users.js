@@ -41,11 +41,11 @@ exports.signupUser = async (req, res) => {
 
   const newUser = new User(req.body);
 
-  // Is the password strong enough?
+  // Is the password too weak (short)?
   if (newUser.password.length < 8) {
     throw new HttpError(400, 'Password must be at least 8 characters.');
   }
-  // Is the username long enough?
+  // Is the username too short?
   if (newUser.userName.length < 6) {
     throw new HttpError(400, 'Username must be at least 6 characters.');
   }
