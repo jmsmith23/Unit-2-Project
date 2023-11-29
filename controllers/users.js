@@ -30,12 +30,17 @@ exports.auth = async (req, res, next) => {
 
 // Create A New User
 exports.signupUser = async (req, res) => {
+  if (req.session.token) {
+    throw new HttpError(400, 'User is logged in.');
+  }
+
   // Is the email already in use?
   if (await User.findOne({ email: req.body.email })) {
     throw new HttpError(400, 'Email is already in use.');
   }
+
   // Is the username taken?
-  if (await User.findOne({ userName: req.body.userName })) {
+  if (await User.findOne({ username: req.body.username })) {
     throw new HttpError(400, 'Username is already in use.');
   }
 
@@ -46,23 +51,29 @@ exports.signupUser = async (req, res) => {
     throw new HttpError(400, 'Password must be at least 8 characters.');
   }
   // Is the username too short?
-  if (newUser.userName.length < 6) {
+  if (newUser.username.length < 6) {
     throw new HttpError(400, 'Username must be at least 6 characters.');
   }
 
   await newUser.save();
   const token = await newUser.generateAuthToken();
-  res.json({ user: newUser, token });
+  req.session.token = token;
+  res.json({ user: newUser });
 };
 
 //Login A User
 exports.loginUser = async (req, res) => {
+  if (req.session.token) {
+    throw new HttpError(400, 'User is logged in.');
+  }
+
   const user = await User.findOne({ email: req.body.email });
   if (!user || !(await bcrypt.compare(req.body.password, user.password))) {
     throw new HttpError(400, 'Invalid Login Info');
   } else {
     const token = await user.generateAuthToken();
-    res.json({ user, token });
+    req.session.token = token;
+    res.json({ user });
   }
 };
 

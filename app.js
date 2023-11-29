@@ -3,8 +3,21 @@ const morgan = require('morgan');
 const userRoutes = require('./routes/users');
 const postRoutes = require('./routes/posts');
 const HttpError = require('./errors/http-error');
+const session = require('express-session');
+const dotenv = require('dotenv');
+const cors = require('cors');
+
+dotenv.config();
 const app = express();
 
+app.use(cors({ origin: ['http://localhost:5173'], credentials: true }));
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    saveUninitialized: true,
+    resave: true,
+  })
+);
 app.use(express.json());
 app.use(morgan('combined'));
 app.use('/users', userRoutes);
