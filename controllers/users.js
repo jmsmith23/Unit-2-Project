@@ -73,7 +73,7 @@ exports.loginUser = async (req, res) => {
   } else {
     const token = await user.generateAuthToken();
     req.session.token = token;
-    res.json({ user });
+    res.json(user);
   }
 };
 

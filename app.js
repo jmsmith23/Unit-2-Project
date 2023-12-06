@@ -11,6 +11,7 @@ dotenv.config();
 const app = express();
 
 app.use(cors({ origin: ['http://localhost:5173'], credentials: true }));
+// NOTE: This creates the req.session property
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
