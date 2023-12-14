@@ -58,7 +58,7 @@ exports.signupUser = async (req, res) => {
   await newUser.save();
   const token = await newUser.generateAuthToken();
   req.session.token = token;
-  res.json({ user: newUser });
+  res.json(newUser);
 };
 
 //Login A User
@@ -109,4 +109,16 @@ exports.deleteUser = async (req, res) => {
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
+};
+
+//Get Current User
+exports.getCurrentUser = async (req, res) => {
+  if (!req.session.token) {
+    res.json(null);
+  }
+
+  const token = req.session.token;
+  const data = jwt.verify(token, process.env.SECRET);
+  const user = await User.findOne({ _id: data._id });
+  res.json(user);
 };
